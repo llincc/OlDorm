@@ -17,7 +17,7 @@ import com.app.linch.oldorm.R;
  * Created by linch on 2017/11/28.
  */
 
-public class LoginActivity extends Activity implements View.OnClickListener,TextWatcher{
+public class LoginActivity extends Activity implements View.OnClickListener{
     private Button loginButton;   //登录按钮
     private EditText usernameText,passwordText; //用户、密码 编辑栏
     private ImageView usernameCancel, passwordCancel; //清除图标
@@ -98,20 +98,5 @@ public class LoginActivity extends Activity implements View.OnClickListener,Text
                 break;
 
         }
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
     }
 }
