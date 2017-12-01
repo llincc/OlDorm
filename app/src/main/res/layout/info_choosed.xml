@@ -24,7 +24,7 @@
         android:layout_below="@id/info_title_c"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="30dp">
         <RelativeLayout
             android:id="@+id/name_c"
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:id="@+id/name_value_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="林雷城"
+                android:text="暂无"
                 android:textSize="20sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
@@ -133,7 +133,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/buildid_c"
+            android:id="@+id/build_c"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -149,7 +149,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/buildid_value_c"
+                android:id="@+id/build_value_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
@@ -160,11 +160,11 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/dormid_c"
+            android:id="@+id/room_c"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
-            android:layout_below="@id/buildid_c"
+            android:layout_below="@id/build_c"
             android:gravity="center_vertical"
             android:layout_marginTop="1dp">
             <TextView
@@ -176,7 +176,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/dormid_value_c"
+                android:id="@+id/room_value_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5327"
@@ -190,7 +190,7 @@
     <ImageView
         android:layout_below="@id/infomation_c"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:src="@drawable/map" />
 </RelativeLayout>

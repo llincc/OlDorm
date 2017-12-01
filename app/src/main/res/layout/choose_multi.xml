@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
-        android:id="@+id/single_title"
+        android:id="@+id/multi_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
@@ -13,14 +13,14 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="单人选宿舍"
+            android:text="多人选宿舍"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/single_title"
+        android:layout_below="@id/multi_title"
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:layout_marginTop="20dp">
@@ -32,7 +32,7 @@
             android:textSize="20sp"
             android:gravity="center"/>
         <RelativeLayout
-            android:id="@+id/build5_single"
+            android:id="@+id/build5_multi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -48,7 +48,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <TextView
-                android:id="@+id/building5_single_value"
+                android:id="@+id/building5_multi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -59,7 +59,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/build13_single"
+            android:id="@+id/build13_multi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -74,7 +74,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/build13_single_value"
+                android:id="@+id/build13_multi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -84,7 +84,7 @@
                 android:layout_marginRight="20dp"/>
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/build14_single"
+            android:id="@+id/build14_multi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -99,7 +99,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/build14_single_value"
+                android:id="@+id/build14_multi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -109,7 +109,7 @@
                 android:layout_marginRight="20dp"/>
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/build8_single"
+            android:id="@+id/build8_multi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -124,7 +124,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/build8_single_value"
+                android:id="@+id/build8_multi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -134,7 +134,7 @@
                 android:layout_marginRight="20dp"/>
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/build9_single"
+            android:id="@+id/build9_multi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#FFFFFF"
@@ -149,7 +149,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"/>
             <TextView
-                android:id="@+id/build9_single_value"
+                android:id="@+id/build9_multi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
@@ -161,3 +161,4 @@
 
     </LinearLayout>
 </RelativeLayout>
+

@@ -139,7 +139,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_below="@id/lockframe"
+            android:layout_below="@id/verifyid_value"
             android:background="#204a9f"
             android:text="开始选宿舍"
             android:textColor="@android:color/white"
