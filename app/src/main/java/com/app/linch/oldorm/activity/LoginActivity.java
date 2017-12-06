@@ -25,7 +25,7 @@ import com.app.linch.oldorm.util.NetUtil;
  * Created by linch on 2017/11/28.
  */
 
-public class LoginActivity extends Activity implements View.OnClickListener{
+public class LoginActivity extends ActivityInterface implements View.OnClickListener{
     private Button loginButton;   //登录按钮
     private EditText usernameText,passwordText; //用户、密码 编辑栏
     private ImageView usernameCancel, passwordCancel; //清除图标
@@ -96,6 +96,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case FetchDataService.LOGIN_RESPONSE:
+                    loginButton.setClickable(true);
                     LoginResponse loginResponse = (LoginResponse) msg.obj;
                     if(loginResponse.getErrcode() == 0) {
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT);
@@ -125,6 +126,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             case R.id.loginbutton:
                 if(NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE ){
                     if(loginCheck()){
+                        loginButton.setClickable(false); //将不能被再次出发
                         loginRequest(); //发送登录请求
                     }
                     else{
@@ -176,7 +178,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     }
     private void directControl(PersonnelInfo personnelInfo){
         SharedPreferences.Editor editor = getSharedPreferences("info",MODE_PRIVATE).edit(); //保存个人信息到sharePreference
-
+        String studentid = personnelInfo.getData().getStudentid();
         editor.putString("name_value", personnelInfo.getData().getName());        //姓名
         editor.putString("stdid_value", personnelInfo.getData().getStudentid());  //学号
         editor.putString("gender_value", personnelInfo.getData().getGender());    //性别
@@ -184,12 +186,14 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         editor.putString("location_value", personnelInfo.getData().getLocation());//位置
         editor.putString("grade_value",personnelInfo.getData().getGrade());        //年级
         if (personnelInfo.getData().getBuilding() == null || personnelInfo.getData().getRoom() == null){  //未选宿舍的
+            editor.putString("room_value", "");       //房间号    覆盖可能存在的内容（防止多账户登录导致的混乱）
+            editor.putString("build_value", "");      //楼号
             editor.commit();
             Intent intent = new Intent(this, PersonInfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍
             startActivity(intent);
         }
         else { //已选宿舍的
-            editor.putString("room_value", personnelInfo.getData().getRoom());           //房间号
+            editor.putString("room_value", personnelInfo.getData().getRoom());       //房间号
             editor.putString("build_value", personnelInfo.getData().getBuilding());  //楼号
             editor.commit();
             Intent intent = new Intent(this, PersonInfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍

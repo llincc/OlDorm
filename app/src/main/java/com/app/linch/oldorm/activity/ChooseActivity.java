@@ -1,6 +1,7 @@
 package com.app.linch.oldorm.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.app.linch.oldorm.R;
 import com.app.linch.oldorm.adapter.ChooseAdpter;
+import com.app.linch.oldorm.bean.ChooseResult;
 import com.app.linch.oldorm.bean.LoginResponse;
 import com.app.linch.oldorm.bean.RoomInfo;
 import com.app.linch.oldorm.service.FetchDataService;
@@ -37,7 +39,7 @@ import java.util.regex.Pattern;
  * Created by linch on 2017/11/30.
  */
 
-public class ChooseActivity extends Activity implements View.OnClickListener,View.OnTouchListener{
+public class ChooseActivity extends  ActivityInterface implements View.OnClickListener,View.OnTouchListener{
     private ExpandableListView mainlistview = null;
     private List<String> parents = null;
     private Map<String, List<String>> childs= null;
@@ -115,6 +117,12 @@ public class ChooseActivity extends Activity implements View.OnClickListener,Vie
                     RoomInfo roomInfo = (RoomInfo)msg.obj;
                     //ystem.out.println("Roomdata"+roomInfo.getData().get_b5());
                     listAdapter.updateBuildNumber(roomInfo.getData().toList()); //更新楼的空床数
+                    break;
+                case FetchDataService.CHOOSE_RESULT:
+                    int resultcode = ((ChooseResult)msg.obj).getError_code();
+                    System.out.println("resultcode: "+ resultcode);
+                    directControl(resultcode);
+
                     break;
                 default:
                     break;
@@ -201,7 +209,7 @@ public class ChooseActivity extends Activity implements View.OnClickListener,Vie
             otherInfoLayout.removeViewAt(i);
         }
     }
-    private boolean itemSetStudentID(){
+    private boolean itemGetStudentID(){
         boolean flag = true;
 
         stdidList = new ArrayList<>();
@@ -216,7 +224,7 @@ public class ChooseActivity extends Activity implements View.OnClickListener,Vie
             stdid = ((EditText)child.findViewById(R.id.other_stdid)).getText().toString().trim();
             verifyid = ((EditText)child.findViewById(R.id.other_verifyid)).getText().toString().trim();
             if("".equals(stdid)||"".equals(verifyid)){
-                Toast.makeText(this, "学号和验证码不能为空", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "学号和验证码不能为空", Toast.LENGTH_SHORT).show();
                 return false;  //返回错误
             }
             else{
@@ -244,7 +252,7 @@ public class ChooseActivity extends Activity implements View.OnClickListener,Vie
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher((String)listAdapter.getGroup(1));
         if(matcher.find()){
-            address += "&" + matcher.find();
+            address += "&" + matcher.group();
         }
         else{
             return "";
@@ -257,14 +265,26 @@ public class ChooseActivity extends Activity implements View.OnClickListener,Vie
         new Thread(new FetchDataService(address, FetchDataService.ROOM_DATA, FetchDataService.REQUEST_GET,this)).start();
     }
     private void submitRequest(){
-        String address = generateAddress();
-        if("".equals(address)){
-            Toast.makeText(this, "信息不完整，请检查输入", Toast.LENGTH_SHORT);
+        if(itemGetStudentID()){
+            String address = generateAddress();
+            if("".equals(address)){
+                Toast.makeText(this, "信息不完整，请检查输入", Toast.LENGTH_SHORT);
+            }
+            else{
+                //发送选宿舍请求
+                new Thread(new FetchDataService(address,FetchDataService.CHOOSE_RESULT, FetchDataService.REQUEST_POST, this)).start();
+            }
         }
-        else{
-            //发送选宿舍请求
-            new Thread(new FetchDataService(address,FetchDataService.CHOOSE_RESULT, FetchDataService.REQUEST_POST, this)).start();
+    }
+    private void directControl(int reulstcode){
+        Intent intent = new Intent(this, ChooseResultActivity.class);
+        if(reulstcode == 0){   //选宿舍成功
+             intent.putExtra("result_code", reulstcode);
         }
+        else{   //选宿舍失败
+             intent.putExtra("result_code", 1);
+        }
+        startActivity(intent);
     }
     public Handler getHandler() {
         return handler;

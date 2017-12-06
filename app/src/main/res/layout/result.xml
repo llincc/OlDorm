@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="宿舍选择成功，5秒后自动跳转"
+        android:text="宿舍选择成功，5秒后自动跳转..."
         android:textSize="20dp"
         android:textColor="@android:color/black"/>
     <Button

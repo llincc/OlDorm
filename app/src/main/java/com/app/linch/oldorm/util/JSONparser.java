@@ -1,5 +1,6 @@
 package com.app.linch.oldorm.util;
 
+import com.app.linch.oldorm.bean.ChooseResult;
 import com.app.linch.oldorm.bean.LoginResponse;
 import com.app.linch.oldorm.bean.PersonnelInfo;
 import com.app.linch.oldorm.bean.RoomInfo;
@@ -24,10 +25,11 @@ public class JSONparser {
     public static LoginResponse parseLoginResponse(String jsondata){
         return gson.fromJson(jsondata,LoginResponse.class);
     }
-    public static Integer parseChooseResponse(String jsondata){
-        Type mapType = new TypeToken<Map<String,String>>(){}.getType();
-        Map map = gson.fromJson(jsondata , mapType);
-        if (map.get("error_code")!=null)   return Integer.parseInt((String)map.get("error_code"));
-        else return -1;
+    public static ChooseResult parseChooseResponse(String jsondata){
+        //Type mapType = new TypeToken<Map<String,String>>(){}.getType();
+        // Map map = gson.fromJson(jsondata , mapType);
+        //if (map.get("error_code")!=null)   return Integer.parseInt((String)map.get("error_code"));
+       // else return -1;
+        return gson.fromJson(jsondata, ChooseResult.class);
     }
 }

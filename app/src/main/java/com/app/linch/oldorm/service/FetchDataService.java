@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Message;
 import android.util.Log;
 
+import com.app.linch.oldorm.activity.ActivityInterface;
 import com.app.linch.oldorm.activity.ChooseActivity;
 import com.app.linch.oldorm.activity.LoginActivity;
 import com.app.linch.oldorm.util.JSONparser;
@@ -34,16 +35,17 @@ public class FetchDataService implements Runnable
     public static  final  String REQUEST_POST = "POST";
     private String address;
     private HttpURLConnection connection;
-    private Context context;
+    private ActivityInterface context;
     private int ResultCode;
     private String requestType;
-    public FetchDataService(String address,int ResultCode, String requestType, Context context)
+    public FetchDataService(String address,int ResultCode, String requestType, ActivityInterface context)
     {
         this.address = address;
         this.connection = null;
         this.requestType = requestType;
         this.context = context;
         this.ResultCode = ResultCode;
+        System.out.println("Address:"+address);
         System.out.println("ResultCode:"+ResultCode);
     }
 
@@ -127,21 +129,22 @@ public class FetchDataService implements Runnable
             case LOGIN_RESPONSE:
                 message.what = LOGIN_RESPONSE;
                 message.obj = JSONparser.parseLoginResponse(jsondata);
-                ((LoginActivity)context).getHandler().sendMessage(message);
+                context.getHandler().sendMessage(message);
                 break;
             case PERNENNEL_INFO:
                 message.what = PERNENNEL_INFO;
                 message.obj = JSONparser.parsePersonnelInfo(jsondata);
-                ((LoginActivity)context).getHandler().sendMessage(message);
+                context.getHandler().sendMessage(message);
                 break;
             case ROOM_DATA:
                 message.what = ROOM_DATA;
                 message.obj = JSONparser.parseRoomData(jsondata);
-                ((ChooseActivity)context).getHandler().sendMessage(message);
+                context.getHandler().sendMessage(message);
                 break;
             case CHOOSE_RESULT:
                 message.what = CHOOSE_RESULT;
                 message.obj = JSONparser.parseChooseResponse(jsondata);
+                context.getHandler().sendMessage(message);
                 break;
             default:
                 break;
