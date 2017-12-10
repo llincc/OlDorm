@@ -45,6 +45,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
     private Map<String, List<String>> childs= null;
     private ChooseAdpter listAdapter;
     private LinearLayout otherInfoLayout;
+    private TextView other_tip;
     private Button submit;
 
     private int choosenum;
@@ -56,6 +57,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose);
 
+        other_tip = (TextView)findViewById(R.id.other_tip);
         submit = (Button)findViewById(R.id.submit_button);
         submit.setOnClickListener(this);
 
@@ -97,6 +99,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
                 return true;
             }
         });
+
         if(NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE){
             Toast.makeText(this,"网络OK",Toast.LENGTH_SHORT).show();
             buildingRequest();
@@ -183,14 +186,41 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
 
 
     }
+
+    /**
+     * 按钮无效设置
+     * 防止回退导致的重新选宿舍
+     * 当选宿舍成功后，回退则选宿舍按钮无效，即无法再次选宿舍
+     */
+    private void choosedCheck(){
+        String building = getSharedPreferences("info",MODE_PRIVATE).getString("room_value","");
+        //如果已经有宿舍了，则submit按钮无效
+        if(!"".equals(building)){
+            submit.setClickable(false);
+            submit.setBackgroundColor(getResources().getColor(R.color.voild));
+        }
+    }
+
+    /**
+     * intem控制，根据选择多少人来增加或减少item
+     * @param childNum
+     */
     private void itemControl(int childNum){
-        int childCount = otherInfoLayout.getChildCount();
+        int childCount = otherInfoLayout.getChildCount(); //当前子项个数
+
+        if(childNum>0){
+            other_tip.setVisibility(View.VISIBLE);  //如果需要填写他人信息，则提示可见
+        }
+        else{
+            other_tip.setVisibility(View.INVISIBLE);//提示隐藏
+        }
         System.out.println("childCount"+childCount+"  childNum"+childNum);
         if(childCount >childNum){
-            //remove
+            //删除子项
             removeItem(childNum,childCount);
         }
         else{
+            //添加子项
             addItem(childNum, childCount);
         }
     }

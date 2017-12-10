@@ -162,7 +162,12 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
              directFail();
          }
     }
-
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        return;
+        //super.onBackPressed();
+    }
     @Override
     public Handler getHandler() {
         return handler;

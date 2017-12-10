@@ -32,12 +32,23 @@
             />
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/other_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expanded_menu"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="请填写小伙伴的信息"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
     <LinearLayout
             android:id="@+id/otherInfo_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_below="@id/expanded_menu">
+            android:layout_below="@id/other_tip">
     </LinearLayout>
     <Button
         android:id="@+id/submit_button"
