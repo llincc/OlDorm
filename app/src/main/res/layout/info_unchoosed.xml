@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="基本信息"
+            android:text="@string/info_title"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
     </RelativeLayout>
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="姓名"
+                android:text="@string/info_name"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -44,7 +44,7 @@
                 android:id="@+id/name_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="林雷城"
+                android:text="xxx"
                 android:textSize="20sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="学号"
+                android:text="@string/info_stdid"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -89,7 +89,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="性别"
+                android:text="@string/info_gender"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -115,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="验证码"
+                android:text="@string/info_verify"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -132,6 +132,34 @@
 
 
         </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/info_choose_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/verifyid"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_open_time"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/open_time_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="@string/info_open_time_value"
+                android:textSize="15sp"
+                android:textColor="@android:color/holo_blue_dark"
+                />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/startchooosebutton"
             android:layout_width="match_parent"
@@ -139,9 +167,9 @@
             android:layout_marginTop="18dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_below="@id/verifyid_value"
+            android:layout_below="@id/info_choose_tips"
             android:background="#204a9f"
-            android:text="开始选宿舍"
+            android:text="@string/info_start_button_text"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
     </LinearLayout>

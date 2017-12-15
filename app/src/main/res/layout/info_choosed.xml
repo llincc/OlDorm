@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="选宿舍信息"
+            android:text="@string/info_title_c"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
     </RelativeLayout>
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="姓名"
+                android:text="@string/info_name_c"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -44,7 +44,7 @@
                 android:id="@+id/name_value_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="暂无"
+                android:text="XXX"
                 android:textSize="20sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="学号"
+                android:text="@string/info_stdid_c"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -89,7 +89,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="性别"
+                android:text="@string/info_gender_c"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -115,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="状态"
+                android:text="@string/info_state_c"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -124,7 +124,7 @@
                 android:id="@+id/state_value_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已完成办理"
+                android:text="@string/info_state_c_value"
                 android:textSize="20sp"
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
@@ -143,7 +143,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="楼号"
+                android:text="@string/info_building"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"
@@ -170,7 +170,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="宿舍号"
+                android:text="@string/info_dorm"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:layout_alignParentLeft="true"

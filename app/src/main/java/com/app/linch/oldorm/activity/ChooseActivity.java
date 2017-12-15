@@ -1,13 +1,10 @@
 package com.app.linch.oldorm.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,14 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.linch.oldorm.R;
-import com.app.linch.oldorm.adapter.ChooseAdpter;
+import com.app.linch.oldorm.adapter.ChooseExpandableListAdapter;
 import com.app.linch.oldorm.bean.ChooseResult;
-import com.app.linch.oldorm.bean.LoginResponse;
 import com.app.linch.oldorm.bean.RoomInfo;
 import com.app.linch.oldorm.service.FetchDataService;
 import com.app.linch.oldorm.util.NetUtil;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +37,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
     private ExpandableListView mainlistview = null;
     private List<String> parents = null;
     private Map<String, List<String>> childs= null;
-    private ChooseAdpter listAdapter;
+    private ChooseExpandableListAdapter listAdapter;
     private LinearLayout otherInfoLayout;
     private TextView other_tip;
     private Button submit;
@@ -66,7 +60,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
        // otherInfoLayout.child
         mainlistview = (ExpandableListView) findViewById(R.id.numberChosse); //可展开列表
         initData(); //初始化列表参数
-        listAdapter = new ChooseAdpter(parents,childs,this);
+        listAdapter = new ChooseExpandableListAdapter(parents,childs,this);
         mainlistview.setAdapter(listAdapter);
         //列表展开监控
         mainlistview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -138,7 +132,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         }
         switch (v.getId()){
             case R.id.submit_button:
-                submitRequest();
+                chooseRequest();
                 break;
             default:
                 break;
@@ -242,8 +236,8 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
     private boolean itemGetStudentID(){
         boolean flag = true;
 
-        stdidList = new ArrayList<>();
-        verifyidList = new ArrayList<>();
+        stdidList = new ArrayList<>();     //其他学生学号列表
+        verifyidList = new ArrayList<>();  //其他学生验证码列表
 
         View child;
         String stdid;
@@ -290,15 +284,19 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         return address;
     }
     private void buildingRequest(){
+        if(!NetUtil.isConnectNet(this)){
+            Toast.makeText(this, "无法获取最新宿舍信息，请检查网络设置",Toast.LENGTH_SHORT).show();
+            return;
+        }
         String gender = getSharedPreferences("info",MODE_PRIVATE).getString("gender","2");
         String address = String.format("https://api.mysspku.com/index.php/V1/MobileCourse/getRoom?gender=%s",gender);
         new Thread(new FetchDataService(address, FetchDataService.ROOM_DATA, FetchDataService.REQUEST_GET,this)).start();
     }
-    private void submitRequest(){
+    private void chooseRequest(){
         if(itemGetStudentID()){
             String address = generateAddress();
             if("".equals(address)){
-                Toast.makeText(this, "信息不完整，请检查输入", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "信息不完整，请检查输入", Toast.LENGTH_SHORT).show();
             }
             else{
                 //发送选宿舍请求

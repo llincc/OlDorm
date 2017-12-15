@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="宿舍选择成功，5秒后自动跳转..."
+            android:text="@string/result_succeed_tip"
             android:textSize="20dp"
             android:textColor="@android:color/black"/>
         <Button
@@ -46,7 +46,7 @@
             android:layout_marginRight="20dp"
             android:layout_below="@id/result_text"
             android:background="#204a9f"
-            android:text="查看宿舍信息"
+            android:text="@string/result_button_succeed"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
     </RelativeLayout>

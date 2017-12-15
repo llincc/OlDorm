@@ -19,12 +19,12 @@ import java.util.Map;
  * Created by linch on 2017/11/30.
  */
 
-public class ChooseAdpter extends BaseExpandableListAdapter{
+public class ChooseExpandableListAdapter extends BaseExpandableListAdapter{
     private List<String> parents;
     private Map<String, List<String>> childs;
     private List<Integer> buildnumber;
     private Context context;
-    public ChooseAdpter(List<String> parents, Map<String,List<String>> childs, Context context){
+    public ChooseExpandableListAdapter(List<String> parents, Map<String,List<String>> childs, Context context){
         this.parents = parents;
         this.childs = childs;
         this.context = context;

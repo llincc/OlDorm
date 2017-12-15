@@ -41,7 +41,7 @@ public class PersonInfoChoosed extends Activity{
         stdid_value.setText(stdid);
         gender_value.setText(gender);
 
-        state.setText("已完成办理");
+        state.setText(R.string.info_state_c_value);
 
         room_value.setText(room);
         build_value.setText(build);

@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">OlDorm</string>
+     <!--login.xml-->
+    <string name="login_title">登录</string>
+    <string name="login_sys_name">在线选宿舍</string>
+    <string name="login_username_hint">用户名</string>
+    <string name="login_password_hint">密码</string>
+    <string name="login_button_text">登 录</string>
+    
+    <!--info_unchoosed.xml-->
+    <string name="info_title">基本信息</string>
+    <string name="info_name">姓名</string>
+    <string name="info_stdid">学号</string>
+    <string name="info_gender">性别</string>
+    <string name="info_verify">验证码</string>
+    <string name="info_open_time">开放时间</string>
+    <string name="info_open_time_value">
+         男生：2017年9月1日12:00:00～2017年9月3日12:00:00\n\n女生：2017年9月3日12:00:00～2017年9月5日12:00:00</string>
+    <string name="info_start_button_text">开始选宿舍</string>
+
+    <!--info_choosed.xml-->
+    <string name="info_title_c">宿舍信息</string>
+    <string name="info_name_c">姓名</string>
+    <string name="info_stdid_c">学号</string>
+    <string name="info_gender_c">性别</string>
+    <string name="info_state_c">状态</string>
+    <string name="info_state_c_value">已完成办理</string>
+    <string name="info_building">楼号</string>
+    <string name="info_dorm">宿舍号</string>
+
+
+    <!--choose.xml-->
+    <string name="choose_title">选宿舍</string>
+    <string name="choose_other_info_tip">请填写小伙伴的信息</string>
+    <string name="choose_submit_text">提交</string>
+
+    <!--result.xml-->
+     <string name="result_title">结果</string>
+     <string name="result_succeed_tip">宿舍选择成功，5秒后自动跳转...</string>
+     <string name="result_failed_tip">宿舍选择失败，5秒后自动跳转...</string>
+     <string name="result_button_succeed">查看宿舍信息</string>
+     <string name="result_button_failed">返回重选</string>
 </resources>

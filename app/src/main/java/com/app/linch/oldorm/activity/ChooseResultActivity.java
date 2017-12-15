@@ -56,7 +56,7 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
                     setPersoninfo(personnelInfo);
                     break;
                 case DIRECT_DELAY: //5秒后跳转信号
-                    directControl();
+                    if(!isFinishing()) directControl();
                     break;
                 default:
                     break;
@@ -81,55 +81,23 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
             result_image.setImageDrawable(getResources().getDrawable(R.drawable.succeed));
             getinfo = false;
             personinfoRequest(getSharedPreferences("info",MODE_PRIVATE).getString("stdid_value","")); //请求选的宿舍号
-            result_message.setText("宿舍选择成功，5秒后自动跳转...");
+            result_message.setText(R.string.result_succeed_tip);
 
-            result_button.setText("查看信息");
+            result_button.setText(R.string.result_button_succeed);
             handler.sendEmptyMessageDelayed(DIRECT_DELAY, 5000);//5秒跳转
         }
         else{
             result_image.setImageDrawable(getResources().getDrawable(R.drawable.failed));
-            result_message.setText("宿舍选择失败，5秒后自动跳转...");
+            result_message.setText(R.string.result_failed_tip);
 
-            result_button.setText("返回重选");
+            result_button.setText(R.string.result_button_failed);
             handler.sendEmptyMessageDelayed(DIRECT_DELAY, 5000);//5秒跳转
         }
     }
     private int getResultCode(){
-        return  this.getIntent().getIntExtra("result_code",1); // 0 选择成功
+        return  this.getIntent().getIntExtra("result_code",1); // 0 选择成功, 非0失败
     }
 
-    /**
-     * 跳转控制
-     */
-//    private void directControl(){
-//        if(result_code == 0){
-//            SharedPreferences.Editor editor = getSharedPreferences("info",MODE_PRIVATE).edit(); //保存个人信息到sharePreference
-//
-//            editor.putString("name_value", personnelInfo.getData().getName());        //姓名
-//            editor.putString("stdid_value", personnelInfo.getData().getStudentid());  //学号
-//            editor.putString("gender_value", personnelInfo.getData().getGender());    //性别
-//            editor.putString("verifyid_value",personnelInfo.getData().getVcode());    //验证码
-//            editor.putString("location_value", personnelInfo.getData().getLocation());//位置
-//            editor.putString("grade_value",personnelInfo.getData().getGrade());        //年级
-//            if (personnelInfo.getData().getBuilding() == null || personnelInfo.getData().getRoom() == null){  //未选宿舍的
-//                editor.commit();
-//                Intent intent = new Intent(this, PersonInfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍
-//                startActivity(intent);
-//            }
-//            else { //已选宿舍的
-//                editor.putString("room_value", personnelInfo.getData().getRoom());           //房间号
-//                editor.putString("build_value", personnelInfo.getData().getBuilding());  //楼号
-//                editor.commit();
-//                Intent intent = new Intent(this, PersonInfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
-//                startActivity(intent);
-//            }
-//        }
-//        else{
-//            //跳转为个人信息界面（未选择宿舍）
-//            Intent intent = new Intent(this,  PersonInfoUnchoosed.class);
-//            startActivity(intent);
-//        }
-//    }
     private void personinfoRequest(String studentid){
         //地址
         String address = String.format("https://api.mysspku.com/index.php/V1/MobileCourse/getDetail?stuid=%s",studentid);
@@ -138,13 +106,14 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
     }
     private void setPersoninfo(PersonnelInfo personnelInfo){
         SharedPreferences.Editor editor = getSharedPreferences("info",MODE_PRIVATE).edit(); //保存个人信息到sharePreference
-        editor.putString("room_value", personnelInfo.getData().getRoom() != null ? personnelInfo.getData().getRoom() :"");           //房间号
-        editor.putString("build_value", personnelInfo.getData().getBuilding() != null ? personnelInfo.getData().getBuilding() : "");      //楼号
+        editor.putString("room_value", personnelInfo.getData().getRoom() != null ? personnelInfo.getData().getRoom() :"xxx");           //房间号
+        editor.putString("build_value", personnelInfo.getData().getBuilding() != null ? personnelInfo.getData().getBuilding() : "xxx");      //楼号
         editor.commit();
     }
     private void directSucess(){
         Intent intent = new Intent(this, PersonInfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
         startActivity(intent);
+        finish();
     }
     private void directFail(){
         Intent intent = new Intent(this, PersonInfoUnchoosed.class);   //跳转到基础信息页面 -- 已选宿舍
@@ -162,6 +131,7 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
              directFail();
          }
     }
+    //禁止回退，防止出现重复选宿舍的情况
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
