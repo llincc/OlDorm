@@ -1,6 +1,5 @@
 package com.app.linch.oldorm.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +8,10 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,15 +29,21 @@ import com.app.linch.oldorm.util.NetUtil;
  */
 
 public class LoginActivity extends ActivityInterface implements View.OnClickListener{
+    private static final  String TAG = "LOGIN";
+
     private Button loginButton;   //登录按钮
     private EditText usernameText,passwordText; //用户、密码 编辑栏
     private ImageView usernameCancel, passwordCancel; //清除图标
     private static int timer = 0;
 
     private String username, password;
+
+    private boolean mIsExit; //退出程序标识
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
        // this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.login);
@@ -189,17 +198,48 @@ public class LoginActivity extends ActivityInterface implements View.OnClickList
             editor.putString("room_value", "");       //房间号    覆盖可能存在的内容（防止多账户登录导致的混乱）
             editor.putString("build_value", "");      //楼号
             editor.commit();
-            Intent intent = new Intent(this, PersonInfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍
-            startActivity(intent);
+            Intent intent = new Intent(this, InfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍
+            startActivity(intent);;
         }
         else { //已选宿舍的
             editor.putString("room_value", personnelInfo.getData().getRoom());       //房间号
             editor.putString("build_value", personnelInfo.getData().getBuilding());  //楼号
             editor.commit();
-            Intent intent = new Intent(this, PersonInfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
+            Intent intent = new Intent(this, InfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
             startActivity(intent);
         }
+        Log.d(TAG, "跳转到个人信息界面");
+        finish();
+
     }
+
+    /**
+     * 点击两次退出程序
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mIsExit) {
+                this.finish();
+
+            } else {
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                mIsExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mIsExit = false;
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     public Handler getHandler() {
         return handler;
     }

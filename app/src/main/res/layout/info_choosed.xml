@@ -12,10 +12,20 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
             android:gravity="center"
             android:text="@string/info_title_c"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
+        <ImageView
+            android:id="@+id/info_menu_c"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/overflow"/>
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/infomation_c"
@@ -76,6 +86,7 @@
                 android:textColor="@android:color/darker_gray"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"/>
+
 
         </RelativeLayout>
         <RelativeLayout

@@ -12,11 +12,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
             android:gravity="center"
             android:text="@string/info_title"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
+        <ImageView
+            android:id="@+id/info_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/overflow"/>
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/infomation"
         android:layout_width="match_parent"
@@ -161,17 +172,18 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/startchooosebutton"
+            android:id="@+id/start_chooose_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="18dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_below="@id/info_choose_tips"
-            android:background="#204a9f"
-            android:text="@string/info_start_button_text"
+            android:background="@color/involid"
+            android:text="@string/info_end_button_text"
             android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:enabled="false"/>
     </LinearLayout>
 
 </RelativeLayout>

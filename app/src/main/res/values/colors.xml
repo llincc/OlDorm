@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#000000</color>
     <color name="windowbackground">#fcfafa</color>
-    <color name="voild">#cacaca</color>
+    <color name="involid">#c4c4c4</color>
+    <color name="volid">#204a9f</color>
+
+    <color name="pure_white">#ffffff</color>
+    <color name="separator_gray">#d8dad8</color>
 </resources>

@@ -1,6 +1,5 @@
 package com.app.linch.oldorm.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.linch.oldorm.R;
-import com.app.linch.oldorm.bean.ChooseResult;
 import com.app.linch.oldorm.bean.PersonnelInfo;
-import com.app.linch.oldorm.bean.RoomInfo;
 import com.app.linch.oldorm.service.FetchDataService;
 
 /**
@@ -111,14 +108,14 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
         editor.commit();
     }
     private void directSucess(){
-        Intent intent = new Intent(this, PersonInfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
+        Intent intent = new Intent(this, InfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
         startActivity(intent);
-        finish();
+        finish(); //结束当前Activity
     }
     private void directFail(){
-        Intent intent = new Intent(this, PersonInfoUnchoosed.class);   //跳转到基础信息页面 -- 已选宿舍
+        Intent intent = new Intent(this, InfoUnchoosed.class);   //跳转到基础信息页面 -- 已选宿舍
         startActivity(intent);
-        finish();
+        finish(); //结束当前Activity
     }
     private  void directControl(){
          if(result_code == 0 && getinfo){         //需要获得宿舍信息才能跳转

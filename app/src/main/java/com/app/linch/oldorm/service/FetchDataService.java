@@ -27,6 +27,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class FetchDataService implements Runnable
 {
+    private static final  String TAG = "FetchData";
     public static  final  int LOGIN_RESPONSE = 0;
     public static  final  int PERNENNEL_INFO = 1;
     public static  final  int ROOM_DATA = 2;
@@ -45,8 +46,8 @@ public class FetchDataService implements Runnable
         this.requestType = requestType;
         this.context = context;
         this.ResultCode = ResultCode;
-        System.out.println("Address:"+address);
-        System.out.println("ResultCode:"+ResultCode);
+        Log.d(TAG, "Address:"+address);
+        Log.d(TAG, "ResultCode:"+ResultCode);
     }
 
     /**

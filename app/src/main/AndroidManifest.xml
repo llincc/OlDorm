@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,10 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.PersonInfoUnchoosed">
+        <activity android:name=".activity.InfoUnchoosed">
 
         </activity>
-        <activity android:name=".activity.PersonInfoChoosed">
+        <activity android:name=".activity.InfoChoosed">
 
         </activity>
         <activity android:name=".activity.ChooseActivity"
@@ -34,6 +35,10 @@
         <activity android:name=".activity.ChooseResultActivity">
 
         </activity>
+
+        <service android:name=".service.TimeAlarmerService">
+
+        </service>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@
     <string name="info_open_time_value">
          男生：2017年9月1日12:00:00～2017年9月3日12:00:00\n\n女生：2017年9月3日12:00:00～2017年9月5日12:00:00</string>
     <string name="info_start_button_text">开始选宿舍</string>
+    <string name="info_end_button_text">暂未开放</string>
 
     <!--info_choosed.xml-->
     <string name="info_title_c">宿舍信息</string>
