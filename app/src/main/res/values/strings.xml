@@ -41,4 +41,9 @@
      <string name="result_failed_tip">宿舍选择失败，5秒后自动跳转...</string>
      <string name="result_button_succeed">查看宿舍信息</string>
      <string name="result_button_failed">返回重选</string>
+
+    <!--exit_window-->
+    <string name="exit_tips">确定退出？</string>
+    <string name="exit_sure">退出</string>
+    <string name="exit_cancel">取消</string>
 </resources>

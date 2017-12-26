@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center"
-            android:text="确定退出？"
+            android:text="@string/exit_tips"
             android:textSize="23sp"
             android:textColor="@android:color/black"
             android:drawableBottom="@drawable/separator_h"/>
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="取消"
+                android:text="@string/exit_cancel"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
                 android:drawableRight="@drawable/separator_v"/>
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="退出"
+                android:text="@string/exit_sure"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"/>
         </LinearLayout>

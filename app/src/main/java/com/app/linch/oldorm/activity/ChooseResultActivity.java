@@ -108,12 +108,12 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
         editor.commit();
     }
     private void directSucess(){
-        Intent intent = new Intent(this, InfoChoosed.class);   //跳转到基础信息页面 -- 已选宿舍
+        Intent intent = new Intent(this, InfoChoosed.class);     //跳转到基础信息页面 -- 已选宿舍
         startActivity(intent);
         finish(); //结束当前Activity
     }
     private void directFail(){
-        Intent intent = new Intent(this, InfoUnchoosed.class);   //跳转到基础信息页面 -- 已选宿舍
+        Intent intent = new Intent(this, InfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍宿舍
         startActivity(intent);
         finish(); //结束当前Activity
     }

@@ -1,5 +1,6 @@
 package com.app.linch.oldorm.activity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.app.linch.oldorm.R;
 import com.app.linch.oldorm.adapter.ChooseExpandableListAdapter;
+import com.app.linch.oldorm.app.MyApplication;
 import com.app.linch.oldorm.bean.ChooseResult;
 import com.app.linch.oldorm.bean.RoomInfo;
 import com.app.linch.oldorm.service.FetchDataService;
@@ -128,6 +131,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
+                MyApplication.getInstance().popAllActivityExceptOne(ChooseActivity.class); //销毁堆栈中其他activity
                 finish();
                 break;
             case R.id.exit_cancel:
@@ -155,7 +159,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         for(int groupPosition=0 ; groupPosition<2; groupPosition++){
             mainlistview.collapseGroup(groupPosition);
         }
-        return true;
+        return false;
     }
     /**
      * 初始化可扩展列表数据
@@ -317,7 +321,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         else{
             other_tip.setVisibility(View.INVISIBLE);//提示隐藏
         }
-        System.out.println("childCount"+childCount+"  childNum"+childNum);
+        Log.d(TAG,"childCount"+childCount+"  childNum"+childNum);
         if(childCount >childNum){
             //删除子项
             removeItem(childNum,childCount);
@@ -424,6 +428,16 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         startActivity(intent);
         Log.d(TAG, "跳转到结果界面");
         finish();
+    }
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            MyApplication.getInstance().popActivity(this);
+        }
+        return super.onKeyDown(keyCode, event);
     }
     private void backgroundAlpha(float bgAlpha)
     {

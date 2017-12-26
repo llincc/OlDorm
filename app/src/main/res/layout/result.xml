@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="结果"
+            android:text="@string/result_title"
             android:textColor="@android:color/white"
             android:textSize="22sp"/>
     </RelativeLayout>

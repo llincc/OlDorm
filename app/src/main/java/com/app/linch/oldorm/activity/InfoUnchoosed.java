@@ -36,7 +36,7 @@ import com.app.linch.oldorm.util.SharePreferencedOp;
  */
 
 public class InfoUnchoosed extends ActivityInterface implements View.OnClickListener{
-    private static final String TAG = "PIU";
+    private static final String TAG = "InfoUnchoosed";
 
     private Button startchoose;
     private TextView name_value, stdid_value, gender_value, verifyid_value;
@@ -102,14 +102,15 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
             case R.id.start_chooose_button:
                 Intent intent = new Intent(this, ChooseActivity.class);   //跳转选宿舍界面
                 startActivity(intent);
-                finishActivity(); // 结束当前Activity
+                MyApplication.getInstance().pushActivity(this);
+                //finishActivity(); // 结束当前Activity
                 break;
             case R.id.info_menu:
                 popupMenu.show();
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
-                finishActivity();
+                finish();
                 break;
             case R.id.exit_cancel:
                 popWindow.dismiss();
@@ -160,7 +161,7 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
                         Intent intent = new Intent(InfoUnchoosed.this, LoginActivity.class);
                         startActivity(intent);
                         Log.d(TAG, "转到登录界面");
-                        finishActivity(); //结束Activity
+                        finish(); //结束Activity
                         break;
                     case R.id.item_exit:
                         backgroundAlpha(0.5f);
@@ -221,7 +222,7 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (mIsExit) {
-                finishActivity();
+                finish();
             } else {
                 Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 mIsExit = true;
@@ -242,10 +243,10 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
         popWindow.showAtLocation(rootView, Gravity.CENTER,0,0);
 
     }
-
-    private void finishActivity(){
+    @Override
+    protected void onDestroy() {
         unbindService(serviceConnection);
-        finish();
+        super.onDestroy();
     }
     private void backgroundAlpha(float bgAlpha)
     {
