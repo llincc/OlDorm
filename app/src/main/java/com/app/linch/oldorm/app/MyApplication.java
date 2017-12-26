@@ -20,6 +20,11 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
         myApplication = this;
+
+        if(activityStack == null){
+            activityStack = new Stack<Activity>();
+            Log.d(TAG, "创建Activity堆栈");
+        }
     }
 
     public static MyApplication getInstance(){

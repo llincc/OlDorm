@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.linch.oldorm.R;
+import com.app.linch.oldorm.app.MyApplication;
 import com.app.linch.oldorm.util.SharePreferencedOp;
 
 import org.w3c.dom.Text;
@@ -154,7 +155,12 @@ public class InfoChoosed extends Activity implements View.OnClickListener{
 
         room_value.setText(room);
         build_value.setText(build);
+    }    @Override
+    protected void onDestroy() {
+        MyApplication.getInstance().popAllActivityExceptOne(InfoChoosed.class); //销毁堆栈中其他activity
+        super.onDestroy();
     }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

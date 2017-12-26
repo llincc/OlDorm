@@ -131,7 +131,6 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
-                MyApplication.getInstance().popAllActivityExceptOne(ChooseActivity.class); //销毁堆栈中其他activity
                 finish();
                 break;
             case R.id.exit_cancel:
@@ -250,7 +249,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
         popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                backgroundAlpha(1f);
+                backgroundAlpha(1f);  //取消popupwindow时恢复背景亮度
             }
         });
 
@@ -431,7 +430,11 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
     }
 
 
-
+    @Override
+    protected void onDestroy() {
+        MyApplication.getInstance().popAllActivityExceptOne(ChooseActivity.class); //销毁堆栈中其他activity
+        super.onDestroy();
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -46,4 +46,8 @@
     <string name="exit_tips">确定退出？</string>
     <string name="exit_sure">退出</string>
     <string name="exit_cancel">取消</string>
+
+    <!--simple_menu-->
+    <string name="switch_user">切换账号</string>
+    <string name="exit_process">退出程序</string>
 </resources>

@@ -246,6 +246,7 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
     @Override
     protected void onDestroy() {
         unbindService(serviceConnection);
+        MyApplication.getInstance().popAllActivityExceptOne(InfoUnchoosed.class); //销毁堆栈中其他activity
         super.onDestroy();
     }
     private void backgroundAlpha(float bgAlpha)

@@ -199,7 +199,7 @@ public class LoginActivity extends ActivityInterface implements View.OnClickList
             editor.putString("build_value", "");      //楼号
             editor.commit();
             Intent intent = new Intent(this, InfoUnchoosed.class);   //跳转到基础信息页面 -- 未选宿舍
-            startActivity(intent);;
+            startActivity(intent);
         }
         else { //已选宿舍的
             editor.putString("room_value", personnelInfo.getData().getRoom());       //房间号

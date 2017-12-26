@@ -3,10 +3,10 @@
     >
     <item
         android:id="@+id/item_change"
-        android:title="切换账号"
+        android:title="@string/switch_user"
         />
     <item
         android:id="@+id/item_exit"
-        android:title="退出登录"/>
+        android:title="@string/exit_process"/>
 
 </menu>

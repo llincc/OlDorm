@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.linch.oldorm.R;
+import com.app.linch.oldorm.app.MyApplication;
 import com.app.linch.oldorm.bean.PersonnelInfo;
 import com.app.linch.oldorm.service.FetchDataService;
 
@@ -127,6 +128,11 @@ public class ChooseResultActivity extends ActivityInterface implements View.OnCl
          else if(result_code == 1 ){
              directFail();
          }
+    }
+    @Override
+    protected void onDestroy() {
+        MyApplication.getInstance().popAllActivityExceptOne(ChooseResultActivity.class); //销毁堆栈中其他activity
+        super.onDestroy();
     }
     //禁止回退，防止出现重复选宿舍的情况
     @Override
