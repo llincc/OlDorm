@@ -110,6 +110,7 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
+                MyApplication.getInstance().popAllActivityExceptOne(InfoUnchoosed.class); //销毁堆栈中其他activity
                 finish();
                 break;
             case R.id.exit_cancel:
@@ -239,14 +240,14 @@ public class InfoUnchoosed extends ActivityInterface implements View.OnClickList
     }
 
     private void showPopWindow(){
-        View rootView = LayoutInflater.from(InfoUnchoosed.this).inflate(R.layout.info_choosed, null);
+        View rootView = LayoutInflater.from(InfoUnchoosed.this).inflate(R.layout.info_unchoosed, null);
         popWindow.showAtLocation(rootView, Gravity.CENTER,0,0);
 
     }
     @Override
     protected void onDestroy() {
         unbindService(serviceConnection);
-        MyApplication.getInstance().popAllActivityExceptOne(InfoUnchoosed.class); //销毁堆栈中其他activity
+
         super.onDestroy();
     }
     private void backgroundAlpha(float bgAlpha)

@@ -12,7 +12,8 @@ import java.net.URLConnection;
  */
 
 public class FetchWebTimeUtil {
-    public static final String DEFAULT_URL = "http://www.baidu.com";
+    public static final String DEFAULT_URL = "http://www.ntsc.ac.cn";
+    public static final String DEFAULT_URL_WAN = "https://api.mysspku.com/";
     public static long getWebTime(){
         return getWebTime(DEFAULT_URL);
     }

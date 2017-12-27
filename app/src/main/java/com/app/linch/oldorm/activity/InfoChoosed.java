@@ -129,6 +129,7 @@ public class InfoChoosed extends Activity implements View.OnClickListener{
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
+                MyApplication.getInstance().popAllActivityExceptOne(InfoChoosed.class); //销毁堆栈中其他activity
                 finish();
                 break;
             case R.id.exit_cancel:
@@ -157,7 +158,7 @@ public class InfoChoosed extends Activity implements View.OnClickListener{
         build_value.setText(build);
     }    @Override
     protected void onDestroy() {
-        MyApplication.getInstance().popAllActivityExceptOne(InfoChoosed.class); //销毁堆栈中其他activity
+
         super.onDestroy();
     }
 

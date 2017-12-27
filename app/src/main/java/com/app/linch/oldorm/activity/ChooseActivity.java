@@ -87,11 +87,11 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
 
 
         if(NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE){
-            Toast.makeText(this,"网络OK",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"网络OK",Toast.LENGTH_SHORT).show();
             buildingRequest();
         }
         else{
-            Toast.makeText(this,"没有网络",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"请检查网络设置",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -131,6 +131,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
                 break;
             case R.id.exit_sure:
                 popWindow.dismiss();
+                MyApplication.getInstance().popAllActivityExceptOne(ChooseActivity.class); //销毁堆栈中其他activity
                 finish();
                 break;
             case R.id.exit_cancel:
@@ -288,7 +289,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
 
 
     private void showPopWindow(){
-        View rootView = LayoutInflater.from(ChooseActivity.this).inflate(R.layout.info_choosed, null);
+        View rootView = LayoutInflater.from(ChooseActivity.this).inflate(R.layout.choose, null);
         popWindow.showAtLocation(rootView, Gravity.CENTER,0,0);
 
     }
@@ -432,7 +433,7 @@ public class ChooseActivity extends  ActivityInterface implements View.OnClickLi
 
     @Override
     protected void onDestroy() {
-        MyApplication.getInstance().popAllActivityExceptOne(ChooseActivity.class); //销毁堆栈中其他activity
+
         super.onDestroy();
     }
     @Override
